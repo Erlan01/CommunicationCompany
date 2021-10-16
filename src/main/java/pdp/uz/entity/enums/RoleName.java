@@ -7,5 +7,5 @@ public enum RoleName {
     ROLE_BRANCH_MANAGER,
     ROLE_NUMBERS_MANAGER,
     ROLE_WORKER,
-    ROLE_USER;
+    ROLE_USER
 }
