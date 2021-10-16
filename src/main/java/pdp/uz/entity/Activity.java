@@ -6,23 +6,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class TourniquetHistory {
+public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 4000)
+    private String details;
+
+    @Column
+    private LocalDateTime createdAt = LocalDateTime.now();
+
     @ManyToOne
-    private TourniquetCard tourniquetCard;
+    private Subscriber subscriber;
 
-    private LocalDateTime enteredAt;
-
-    private LocalDateTime exitedAt;
+    @ManyToOne
+    private ActivityType activityType;
 }

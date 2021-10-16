@@ -6,23 +6,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class TourniquetHistory {
+public class SubscriberPackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private TourniquetCard tourniquetCard;
+    private Package packages;
 
-    private LocalDateTime enteredAt;
+    @ManyToOne
+    private Subscriber subscriber;
 
-    private LocalDateTime exitedAt;
+    private LocalDate activationDate;
+
+    private LocalDate expirationDate;
 }

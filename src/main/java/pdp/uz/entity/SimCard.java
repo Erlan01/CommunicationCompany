@@ -6,23 +6,33 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class TourniquetHistory {
+public class SimCard {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    private Number number;
+
     @ManyToOne
-    private TourniquetCard tourniquetCard;
+    private Client client;
 
-    private LocalDateTime enteredAt;
+    @ManyToOne
+    private Branch branch;
 
-    private LocalDateTime exitedAt;
+    private Double balance = 0D;
+
+    private Double price;
+
+    private LocalDate createdAt = LocalDate.now();
+
+    private boolean status = true;
 }

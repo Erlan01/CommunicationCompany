@@ -6,23 +6,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class TourniquetHistory {
+public class ResidueOpportunity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private TourniquetCard tourniquetCard;
+    private Subscriber subscriber;
 
-    private LocalDateTime enteredAt;
+    private boolean tariff;     // true -> tariflardan foydalanish imkoniyati bor,  false -> paketlardan
 
-    private LocalDateTime exitedAt;
+    private String key;
+
+    private Long value = 0L;
 }

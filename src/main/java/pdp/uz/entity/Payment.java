@@ -4,25 +4,31 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pdp.uz.entity.enums.PaymentType;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class TourniquetHistory {
+public class Payment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private TourniquetCard tourniquetCard;
+    @Column(nullable = false)
+    private double amount;
 
-    private LocalDateTime enteredAt;
+    @Column
+    private LocalDateTime paymentDay = LocalDateTime.now();
 
-    private LocalDateTime exitedAt;
+    @Enumerated(EnumType.STRING)
+    private PaymentType paymentType;
+
+    @Column(nullable = false)
+    private String payer;
 }

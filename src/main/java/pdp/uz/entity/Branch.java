@@ -4,25 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pdp.uz.entity.enums.BranchType;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-public class TourniquetHistory {
+@Entity(name = "branch")
+public class Branch {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    private BranchType type;
+
     @ManyToOne
-    private TourniquetCard tourniquetCard;
+    private Employee employee;
 
-    private LocalDateTime enteredAt;
-
-    private LocalDateTime exitedAt;
+    private boolean isActive = true;
 }

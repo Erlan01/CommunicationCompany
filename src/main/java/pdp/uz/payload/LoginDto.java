@@ -16,8 +16,7 @@ import java.io.Serializable;
 public class LoginDto implements Serializable {
 
     @NotNull
-    @Email
-    private String email;
+    private String username;
 
     @NotNull
     private String password;

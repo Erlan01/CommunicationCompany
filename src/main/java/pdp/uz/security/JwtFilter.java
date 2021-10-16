@@ -6,7 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import pdp.uz.service.EmployeeService;
+import pdp.uz.service.UserService;
 
 
 import javax.servlet.FilterChain;
@@ -22,7 +22,7 @@ public class JwtFilter extends OncePerRequestFilter {
     JwtProvider jwtProvider;
 
     @Autowired
-    EmployeeService employeeService;
+    UserService userService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest,
@@ -31,9 +31,9 @@ public class JwtFilter extends OncePerRequestFilter {
         String authorization = httpServletRequest.getHeader("Authorization");
         if (authorization != null && authorization.startsWith("Bearer")) {
             String token = authorization.substring(7);
-            String email = jwtProvider.getEmailFromToken(token);
-            if (email != null) {
-                UserDetails userDetails = employeeService.loadUserByUsername(email);
+            String username = jwtProvider.getUsernameFromToken(token);
+            if (username != null) {
+                UserDetails userDetails = userService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);

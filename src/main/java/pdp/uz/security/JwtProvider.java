@@ -3,18 +3,20 @@ package pdp.uz.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
-import pdp.uz.entity.Role;
 
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 
 @Component
 public class JwtProvider {
-    private static final long EXPIRE_TIME = 1000 * 60 * 60 * 24;
+
+    private static final long EXPIRE_TIME = 1000 * 60 * 60L;
+
     private static final String secretKey = "secretKey";
 
-    public String generateToken(String username, Set<Role> roles) {
+    public String generateToken(String username, Collection<GrantedAuthority> roles) {
         Date expireDate = new Date(System.currentTimeMillis() + EXPIRE_TIME);
         return Jwts
                 .builder()
@@ -26,7 +28,7 @@ public class JwtProvider {
                 .compact();
     }
 
-    public String getEmailFromToken(String token) {
+    public String getUsernameFromToken(String token) {
         try {
             return Jwts
                     .parser()

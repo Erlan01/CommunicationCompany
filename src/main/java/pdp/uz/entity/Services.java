@@ -1,12 +1,10 @@
 package pdp.uz.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import pdp.uz.entity.enums.RoleName;
+import pdp.uz.entity.enums.TariffType;
 
 import javax.persistence.*;
 
@@ -14,14 +12,23 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "roles")
-public class Role {
-
+@Entity
+public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String name;
+
+    @OneToOne
+    private ServiceCategory serviceCategory;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TariffType type;
+
+    private double price;
+
+    private boolean status = true;
 }

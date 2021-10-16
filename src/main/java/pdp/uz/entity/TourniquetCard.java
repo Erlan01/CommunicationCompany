@@ -26,7 +26,7 @@ public class TourniquetCard {
     private UUID id;
 
     @ManyToOne
-    private Company company;
+    private Branch branch;
 
     @ManyToOne
     private Employee employee;
@@ -34,19 +34,6 @@ public class TourniquetCard {
     @CreationTimestamp
     @Column(updatable = false)
     private Date createdAt;
-
-    @UpdateTimestamp
-    @Column
-    private Date updatedAt;
-
-    @Column
-    private Date expireDate = new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 365 * 3);
-
-    @CreatedBy
-    private UUID createdBy;
-
-    @LastModifiedBy
-    private UUID updatedBy;
 
     @Column
     private boolean status = true;
