@@ -35,10 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userDetailsService;
 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -55,16 +57,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -76,5 +81,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/webjars/**");
         web.ignoring().antMatchers("/api/auth");
     }
-
 }
