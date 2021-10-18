@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "employee")
 public class Employee {
 
     @Id
@@ -38,7 +38,7 @@ public class Employee {
     @ManyToMany
     private Set<Role> roles = new HashSet<>();
 
-    private boolean isActive = true;
+    private boolean active = true;
 
     private String getFullName() {
         return this.firstName + " " + this.lastName;

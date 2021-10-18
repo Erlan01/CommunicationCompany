@@ -23,5 +23,5 @@ public class USSDCodes {
 
     private String description;
 
-    private boolean isActive = true;
+    private boolean active = true;
 }

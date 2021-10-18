@@ -1,6 +1,6 @@
 package pdp.uz.service;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -19,12 +19,13 @@ import java.util.HashSet;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
-    private final EmployeeRepo employeeRepo;
+    @Autowired
+    private EmployeeRepo employeeRepo;
 
-    private final ClientRepo clientRepo;
+    @Autowired
+    private ClientRepo clientRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -23,8 +23,11 @@ public class Payment {
     @Column(nullable = false)
     private double amount;
 
-    @Column
-    private LocalDateTime paymentDay = LocalDateTime.now();
+    @ManyToOne(optional = false)
+    private Subscriber subscriber;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;

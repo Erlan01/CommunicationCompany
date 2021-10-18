@@ -28,5 +28,5 @@ public class Branch {
     @ManyToOne
     private Employee employee;
 
-    private boolean isActive = true;
+    private boolean active = true;
 }

@@ -1,4 +1,4 @@
-package pdp.uz.payload;
+package pdp.uz.payload.helpers;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

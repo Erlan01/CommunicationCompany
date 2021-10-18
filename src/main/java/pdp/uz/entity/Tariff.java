@@ -39,7 +39,7 @@ public class Tariff {
     @Column
     private String description;
 
-    private boolean isActive = true;
+    private boolean active = true;
 
     @OneToMany(mappedBy = "tariff", cascade = CascadeType.PERSIST)
     private List<TariffOpportunity> tariffOpportunities;

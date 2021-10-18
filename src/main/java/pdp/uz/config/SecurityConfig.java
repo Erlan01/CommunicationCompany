@@ -1,6 +1,6 @@
 package pdp.uz.config;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -20,11 +20,11 @@ import pdp.uz.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final JwtFilter jwtFilter;
+    @Autowired
+    private JwtFilter jwtFilter;
 
     private static final String[] WHITE_LIST = {
             "/swagger-resources/**",
@@ -33,7 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/webjars/**"
     };
 
-    private final UserService userDetailsService;
+    @Autowired
+    private UserService userDetailsService;
 
 
     @Override

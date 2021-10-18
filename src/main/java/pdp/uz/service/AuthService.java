@@ -7,7 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
-import pdp.uz.payload.ApiResponse;
+import pdp.uz.payload.helpers.ApiResponse;
 import pdp.uz.payload.LoginDto;
 import pdp.uz.security.JwtProvider;
 
